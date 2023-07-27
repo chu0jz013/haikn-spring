@@ -21,8 +21,9 @@ pipeline {
         stage('Packaging/Pushing imagae') {
 
             steps {
+                sh 'docker --version'
+                sh 'docker run hello-world'
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker --version'
                     sh 'docker build -t quachuoiscontainer/springboot .'
                     sh 'docker push quachuoiscontainer/springboot'
                 }
