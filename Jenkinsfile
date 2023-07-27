@@ -23,6 +23,7 @@ pipeline {
             steps {
                 sh 'docker --version'
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                    args '-u root'
                     sh 'docker run hello-world'
                     sh 'docker build -t quachuoiscontainer/springboot .'
                     sh 'docker push quachuoiscontainer/springboot'
